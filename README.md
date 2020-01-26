@@ -1,0 +1,1 @@
+# selenide-automation-example
