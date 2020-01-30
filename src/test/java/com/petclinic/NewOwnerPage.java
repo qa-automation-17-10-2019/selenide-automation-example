@@ -1,7 +1,11 @@
 package com.petclinic;
 
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.Selenide;
+import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.WebDriverRunner;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 
 import static com.codeborne.selenide.Selenide.$;
 
@@ -41,14 +45,27 @@ public class NewOwnerPage {
         return new OwnersPage();
     }
 
+    public OwnersPage addButtonShouldBe(Condition condition) {
+        $("[type='submit']").shouldBe(condition);
+        return new OwnersPage();
+    }
 
-//    $("#firstName").setValue("Selendie");
-//    $("#lastName").setValue("cool");
-//    $("#address").setValue("street 34");
-//    $("#city").setValue("Dnipro");
-//    $(By.id("telephone")).setValue("1234567890");
+    public NewOwnerPage setAddButtonEnabled() {
+        SelenideElement addBtn = $("[type='submit']");
+        Selenide.executeJavaScript("arguments[0].disabled=false;", addBtn);
+//        Selenide.executeJavaScript("arguments[0].click();", addBtn);
+//        JavascriptExecutor jse = (JavascriptExecutor) WebDriverRunner.getWebDriver();
+//        jse.executeScript("document.getElementById('gbqfb').click();");
+        return this;
+    }
 
-//        $("[type='submit']").shouldBe(Condition.enabled).click();
+    public String getTextByJs() {
+        SelenideElement addBtn = $("[type='submit']");
+        String text = Selenide.executeJavaScript("return arguments[0].innerText;", addBtn);
+//        Selenide.executeJavaScript("arguments[0].click();", addBtn);
+//        JavascriptExecutor jse = (JavascriptExecutor) WebDriverRunner.getWebDriver();
+//        jse.executeScript("document.getElementById('gbqfb').click();");
+        return text;
+    }
 
-//        $("h2").shouldHave(Condition.text("Owners"));
 }

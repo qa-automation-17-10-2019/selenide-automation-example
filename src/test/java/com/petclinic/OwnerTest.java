@@ -2,7 +2,9 @@ package com.petclinic;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.logevents.SelenideLogger;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import io.qameta.allure.selenide.AllureSelenide;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -20,11 +22,13 @@ public class OwnerTest {
 
     static {
         Configuration.baseUrl = "http://139.59.149.247:8000/petclinic";
+        SelenideLogger.addListener("AllureSelenide",
+                new AllureSelenide().screenshots(true).savePageSource(true));
 //        Configuration.timeout = 7000;
 //        Configuration.browser = "firefox";
     }
 
-    @Test
+    //    @Test
     public void addNewOwnerTest() {
         open("/owners/add");
 
@@ -56,6 +60,27 @@ public class OwnerTest {
                 .setTelephone("1234567890")
                 .clickAddNewOwnerBtn()
                 .checkPage();
+
+    }
+
+    @Test
+    public void addButtonShouldBeTest() {
+        open("/owners/add");
+        NewOwnerPage newOwnerPage = new NewOwnerPage();
+
+        newOwnerPage
+                .setAddButtonEnabled()
+                .addButtonShouldBe(Condition.enabled);
+
+    }
+
+    @Test
+    public void getTextByJsText() {
+        open("/owners/add");
+        NewOwnerPage newOwnerPage = new NewOwnerPage();
+
+        String textByJs = newOwnerPage.getTextByJs();
+        System.out.println("textByJs: " + textByJs);
 
     }
 
