@@ -1,0 +1,11 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="UI test suite" verbose="1" >
+
+    <test name="Add new Simple Owner test" >
+        <classes>
+            <class name="com.petclinic.SimpleOwnerTest"/>
+        </classes>
+    </test>
+
+</suite>
