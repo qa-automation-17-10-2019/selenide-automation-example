@@ -2,6 +2,7 @@ package com.petclinic;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -15,6 +16,7 @@ public class SimpleOwnerTest {
 
     @BeforeClass
     public void setUp() {
+        WebDriverManager.chromedriver().setup();
         Configuration.baseUrl = "http://139.59.149.247:8000/petclinic";
     }
 
