@@ -16,7 +16,6 @@ public class SimpleOwnerTest {
 
     @BeforeClass
     public void setUp() {
-        WebDriverManager.chromedriver().setup();
         Configuration.baseUrl = "http://139.59.149.247:8000/petclinic";
     }
 
