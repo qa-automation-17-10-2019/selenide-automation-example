@@ -17,6 +17,7 @@ public class SimpleOwnerTest {
     @BeforeClass
     public void setUp() {
         Configuration.baseUrl = "http://139.59.149.247:8000/petclinic";
+
     }
 
 
